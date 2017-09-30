@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dbc36081-147c-4e2a-a64f-71be291fa8e9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/auth/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App.js" afterPath="$PROJECT_DIR$/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/partials/PreferenceDisplay.js" afterPath="$PROJECT_DIR$/js/components/partials/PreferenceDisplay.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/partials/PreferenceSelect.js" afterPath="$PROJECT_DIR$/js/components/partials/PreferenceSelect.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/partials/UIButton.js" afterPath="$PROJECT_DIR$/js/components/partials/UIButton.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/partials/UIButtonsWrapper.js" afterPath="$PROJECT_DIR$/js/components/partials/UIButtonsWrapper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/partials/UITitle.js" afterPath="$PROJECT_DIR$/js/components/partials/UITitle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/screens/AuthScreen/index.js" afterPath="$PROJECT_DIR$/js/components/screens/AuthScreen/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/screens/LoginScreen/index.js" afterPath="$PROJECT_DIR$/js/components/screens/LoginScreen/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/screens/RegisterScreen/index.js" afterPath="$PROJECT_DIR$/js/components/screens/RegisterScreen/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/screens/ScreenBase.js" afterPath="$PROJECT_DIR$/js/components/screens/ScreenBase.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/screens/SetPreferencesScreen/index.js" afterPath="$PROJECT_DIR$/js/components/screens/SetPreferencesScreen/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/screens/ViewPreferencesScreen/index.js" afterPath="$PROJECT_DIR$/js/components/screens/ViewPreferencesScreen/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,14 +21,14 @@
     <favorites_list name="SimpleApp" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.649865">
+    <splitter split-orientation="horizontal" split-proportion="0.1936937">
       <split-first>
         <leaf>
           <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/components/screens/SetPreferencesScreen/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="144">
-                  <caret line="21" column="27" lean-forward="false" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+                <state relative-caret-position="94">
+                  <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
                   <folding>
                     <element signature="e#49#88#0" expanded="true" />
                   </folding>
@@ -165,7 +154,7 @@
           <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/App.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="260">
+                <state relative-caret-position="275">
                   <caret line="25" column="64" lean-forward="false" selection-start-line="25" selection-start-column="64" selection-end-line="25" selection-end-column="64" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
@@ -175,10 +164,20 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ScreenBase.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/README.md">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="135">
+                  <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ScreenBase.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/js/components/screens/ScreenBase.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="276">
+                <state relative-caret-position="315">
                   <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
@@ -213,7 +212,6 @@
       <list>
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/js/components/ScreenBase.js" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/js/components/partials/PreferenceSelect.js" />
         <option value="$PROJECT_DIR$/js/components/partials/UIButtonsWrapper.js" />
         <option value="$PROJECT_DIR$/js/auth/index.js" />
@@ -223,10 +221,11 @@
         <option value="$PROJECT_DIR$/js/components/screens/LoginScreen/index.js" />
         <option value="$PROJECT_DIR$/js/components/partials/PreferenceDisplay.js" />
         <option value="$PROJECT_DIR$/js/components/screens/RegisterScreen/index.js" />
-        <option value="$PROJECT_DIR$/App.js" />
         <option value="$PROJECT_DIR$/js/components/screens/ViewPreferencesScreen/index.js" />
         <option value="$PROJECT_DIR$/js/components/screens/ScreenBase.js" />
         <option value="$PROJECT_DIR$/js/components/screens/SetPreferencesScreen/index.js" />
+        <option value="$PROJECT_DIR$/App.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -612,12 +611,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1506734452039</updated>
-      <workItem from="1506734455947" duration="14519000" />
+      <workItem from="1506734455947" duration="14890000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14519000" />
+    <option name="totallyTimeSpent" value="14890000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -676,14 +675,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
           <caret line="28" column="1" lean-forward="false" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -771,17 +762,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="25" column="64" lean-forward="false" selection-start-line="25" selection-start-column="64" selection-end-line="25" selection-end-column="64" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#49#88#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/components/screens/ViewPreferencesScreen/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
@@ -804,8 +784,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/components/screens/ScreenBase.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
+        <state relative-caret-position="315">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#49#88#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="25" column="64" lean-forward="false" selection-start-line="25" selection-start-column="64" selection-end-line="25" selection-end-column="64" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#49#88#0" expanded="true" />
@@ -815,11 +806,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/components/screens/SetPreferencesScreen/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="21" column="27" lean-forward="false" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+        <state relative-caret-position="94">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding>
             <element signature="e#49#88#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

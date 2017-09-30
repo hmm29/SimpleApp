@@ -23,7 +23,7 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.appContainer}>
-        <StatusBar barStyle="dark-content" backgroundColor="blue"/>
+        <StatusBar barStyle="dark-content" backgroundColor="#aaa"/>
         <DrawerNavigation/>
       </View>
     )
