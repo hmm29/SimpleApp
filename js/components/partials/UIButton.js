@@ -2,21 +2,26 @@
  * Created by harrisonmiller on 9/29/17.
  */
 import React, {Component} from 'react';
-import {Dimensions, TouchableOpacity, View, Text} from 'react-native';
+import {Dimensions, TouchableOpacity, Text} from 'react-native';
+import PropTypes from 'prop-types';
 
 const {height} = Dimensions.get('window');
 
 export default class UIButton extends Component {
+  static propTypes = {
+    onPress: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
+    style: PropTypes.object
+  }
+  
   render() {
-    const {onPress, title} = this.props;
+    const {onPress, title, style} = this.props;
     
     return (
-      <TouchableOpacity onPress={onPress} style={styles.button}>
-        <View style={styles.buttonContent}>
+      <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
           <Text style={styles.buttonText}>
             {title}
           </Text>
-        </View>
       </TouchableOpacity>
     )
   }
@@ -26,9 +31,7 @@ const styles = {
   button: {
     borderWidth: 1,
     borderColor: '#aaa',
-    borderRadius: 5
-  },
-  buttonContent: {
+    borderRadius: 5,
     width: height/10,
     height: height/10,
     flexDirection: 'column',
@@ -36,6 +39,7 @@ const styles = {
     alignItems: 'center'
   },
   buttonText: {
-    fontSize: height/45
+    fontSize: height/45,
+    textAlign: 'center'
   }
 }

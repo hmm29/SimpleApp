@@ -3,14 +3,19 @@
  */
 import React, {Component} from 'react';
 import {Dimensions, View} from 'react-native';
+import PropTypes from 'prop-types';
 
 const {width, height} = Dimensions.get('window');
 
 export default class UIButtonsWrapper extends Component {
+  static propTypes = {
+    style: PropTypes.object
+  }
   render() {
+    const {style} = this.props;
     
     return (
-      <View style={styles.buttonsWrapper}>
+      <View style={[styles.buttonsWrapper, style]}>
         {this.props.children}
       </View>
     )

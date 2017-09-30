@@ -2,14 +2,12 @@
  * Created by harrisonmiller on 9/29/17.
  */
 import React, {Component} from 'react';
-import {Dimensions, View} from 'react-native';
+import {View} from 'react-native';
 
 import UIButton from './UIButton';
 import UIButtonsWrapper from './UIButtonsWrapper';
 import UITitle from './UITitle';
 import PropTypes from 'prop-types';
-
-const {width, height} = Dimensions.get('window');
 
 export default class PreferenceSelect extends Component {
   static propTypes = {
