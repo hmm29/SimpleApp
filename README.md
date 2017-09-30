@@ -17,12 +17,12 @@ Take a look at the Mystro app for a sense of the desired look and feel if needed
 
 #### Requirements:
 
-..* As a user, I want to be able to log in with my email and password.
-..* As a user, I want to be able to create an account using my email and password.
-..* As a user, I want to be prompted to set my preferences (see attached screens) when I first log in
-..* As a user, I want to be able to view my preferences after logging in after I have set them. These preferences should carry over to any device I log in to.
-..* As a user, I want to be able to access the preferences wizard again to change my preferences after I have set them using a "Change Preferences" button.
-..* As a user, I want to be able to log out using a "Log Out" button.
+* As a user, I want to be able to log in with my email and password.
+* As a user, I want to be able to create an account using my email and password.
+* As a user, I want to be prompted to set my preferences (see attached screens) when I first log in
+* As a user, I want to be able to view my preferences after logging in after I have set them. These preferences should carry over to any device I log in to.
+* As a user, I want to be able to access the preferences wizard again to change my preferences after I have set them using a "Change Preferences" button.
+* As a user, I want to be able to log out using a "Log Out" button.
 
 There should be a total of 7 screens based on the above requirement --
 a screen with Login/Register buttons, a screen with the login fields/button,
