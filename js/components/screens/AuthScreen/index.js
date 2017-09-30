@@ -4,6 +4,7 @@
 import React, {Component} from 'react';
 import {Text} from 'react-native';
 import ScreenBase from '../ScreenBase';
+import UITitle from '../../partials/UITitle';
 
 export default class AuthScreen extends Component {
   static navigationOptions = {
@@ -13,7 +14,7 @@ export default class AuthScreen extends Component {
   render() {
     return (
       <ScreenBase>
-        <Text style={styles.text}>Hello World</Text>
+        <UITitle>Hello World</UITitle>
       </ScreenBase>
     )
   }
