@@ -1,40 +1,36 @@
-/**
- * Created by harrisonmiller on 9/30/17.
- */
-// import auth0 from 'auth0-js';
+import React, {Component} from 'react';
+import {AsyncStorage} from 'react-native';
 
-// // Initialize auth0
-// const webAuth = new auth0.WebAuth({
-//   domain: "{YOUR_AUTH0_DOMAIN}",
-//   clientID: "{YOUR_AUTH0_CLIENT_ID}"
-// });
+class Authentication extends Component {
+  
+  userSignup() {
+    if (!this.state.username || !this.state.password) return;
+    // TODO: localhost doesn't work because the app is running inside an emulator. Get the IP address with ifconfig.
+    fetch('http://192.168.XXX.XXX:3001/users', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password,
+      })
+    })
+      .then((response) => response.json())
+      .then((responseData) => {
+        this.saveItem('id_token', responseData.id_token),
+          Alert.alert( 'Signup Success!', 'Click the button to get a Chuck Norris quote!'),
+          Actions.HomePage();
+      })
+      .done();
+  }
+  
+  async saveItem(item, selectedValue) {
+    try {
+      await AsyncStorage.setItem(item, selectedValue);
+    } catch (error) {
+      console.error('AsyncStorage error: ' + error.message);
+    }
+  }
 
-// const authorize = () => {
-//   webAuth.authorize({
-//     //Any additional options can go here
-//   });
-// }
+}
 
-//
-// auth.authorize({
-//   scope: 'read:order write:order',
-//   responseType: 'token',
-// });
-//
-// auth.parseHash(window.location.hash, function(err, authResult) {
-//   if (err) {
-//     return console.log(err);
-//   }
-//
-//   // The contents of authResult depend on which authentication parameters were used.
-//   // It can include the following:
-//   // authResult.accessToken - access token for the API specified by `audience`
-//   // authResult.expiresIn - string with the access token's expiration time in seconds
-//   // authResult.idToken - ID token JWT containing user profile information
-//
-//   auth.client.userInfo(authResult.accessToken, function(err, user) {
-//     // Now you have the user's information
-//   });
-// });
-
-
+export default Authentication;

@@ -8,7 +8,7 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight,
+  TouchableOpacity,
   AlertIOS} from 'react-native';
 
 import ScreenBase from '../ScreenBase';
@@ -44,9 +44,9 @@ export default class RegisterScreen extends Component {
           ref="form"
           type={LogIn}
         />
-        <TouchableHighlight style={styles.button} onPress={this.onPress} underlayColor='#99d9f4'>
+        <TouchableOpacity style={styles.button} onPress={this.onPress} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>Register</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </ScreenBase>
     )
   }
