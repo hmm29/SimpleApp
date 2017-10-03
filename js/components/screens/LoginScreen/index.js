@@ -2,39 +2,68 @@
  * Created by harrisonmiller on 9/29/17.
  */
 import React, {Component} from 'react';
-import {Dimensions} from 'react-native';
+import {
+  AsyncStorage,
+  Dimensions,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  AlertIOS} from 'react-native';
 
 import ScreenBase from '../ScreenBase';
-import UITitle from '../../partials/UITitle';
-import UIButton from '../../partials/UIButton';
-import UIButtonsWrapper from '../../partials/UIButtonsWrapper';
+import t from 'tcomb-form-native';
 
-const {width, height} = Dimensions.get('window');
+const {height} = Dimensions.get('window');
+const Form = t.form.Form;
+
+const LogIn = t.struct({
+  email: t.String,
+  password: t.String,
+});
+
 
 export default class LoginScreen extends Component {
+  static navigationOptions = {
+    title: 'Log In'
+  }
+  
+  _onPress() {
+    let value = this.refs.form.getValue();
+    if (value) {
+      console.log(value);
+    }
+  }
+  
   render() {
     const {navigate} = this.props.navigation;
     
     return (
       <ScreenBase>
-        <UITitle>
-          Log In
-        </UITitle>
-        <UIButtonsWrapper style={styles.buttonWrapper}>
-          <UIButton onPress={() => navigate('SetPreferences')} title="Set Preferences" style={styles.button} />
-          <UIButton onPress={() => navigate('ViewPreferences')} title="View Preferences" style={styles.button} />
-        </UIButtonsWrapper>
+        <Form
+          ref="form"
+          type={LogIn}
+        />
+        <TouchableOpacity style={styles.button} onPress={this.onPress}>
+          <Text style={styles.buttonText}>Log In</Text>
+        </TouchableOpacity>
       </ScreenBase>
     )
   }
 }
 
 const styles = {
-  button: {
-    width: width/1.5,
-    marginVertical: height/50
+  buttonText: {
+    fontSize: height/40,
+    textAlign: 'center'
   },
-  buttonWrapper: {
-    flexDirection: 'column'
-  }
+  button: {
+    height: height/10,
+    borderWidth: 1,
+    borderColor: '#aaa',
+    borderRadius: 5,
+    margin: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
 }

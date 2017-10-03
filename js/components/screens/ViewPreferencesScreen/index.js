@@ -17,10 +17,11 @@ export default class ViewPreferencesScreen extends Component {
   
   
   render() {
+    const {logOut} = this.props.screenProps;
     const {navigate} = this.props.navigation;
     
     return (
-      <ScreenBase>
+      <ScreenBase navigate={navigate}>
         <PreferenceDisplay sectionTitle="Settings" preferences={{
           pickupDistanceTimeInMinutes: 5,
           lowestPassengerRatingAllowed: 5,
@@ -29,7 +30,7 @@ export default class ViewPreferencesScreen extends Component {
           carpoolServicesAvailable: 'No'}} />
         <UIButtonsWrapper>
           <UIButton onPress={() => navigate('SetPreferences')} title="Change Preferences" style={styles.button}/>
-          <UIButton onPress={() => {navigate('Home')}} title="LogOut" style={styles.button}/>
+          <UIButton onPress={() => logOut()} title="LogOut" style={styles.button}/>
         </UIButtonsWrapper>
       </ScreenBase>
     )

@@ -3,7 +3,7 @@
  */
 import React, {Component} from 'react';
 import {StatusBar, View} from 'react-native';
-import {DrawerNavigator} from 'react-navigation';
+import {DrawerNavigator, StackNavigator} from 'react-navigation';
 
 import AuthScreen from './js/components/screens/AuthScreen';
 import LoginScreen from './js/components/screens/LoginScreen';
@@ -12,19 +12,34 @@ import SetPreferencesScreen from './js/components/screens/SetPreferencesScreen';
 import ViewPreferencesScreen from './js/components/screens/ViewPreferencesScreen';
 
 const DrawerNavigation = DrawerNavigator({
-    Home: {screen: AuthScreen},
-    Login: {screen: LoginScreen},
-    Register: {screen: RegisterScreen},
     SetPreferences: {screen: SetPreferencesScreen},
     ViewPreferences: {screen: ViewPreferencesScreen}
 });
 
+const StackNavigation = StackNavigator({
+  Home: {screen: AuthScreen},
+  Login: {screen: LoginScreen},
+  Register: {screen: RegisterScreen},
+})
+
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+  
+  componentWillMount() {
+    this.setState({userLoggedIn: true});
+  }
+  
+  _logOut() {
+    this.setState({userLoggedIn: false});
+  }
+  
   render() {
     return (
       <View style={styles.appContainer}>
         <StatusBar barStyle="dark-content" backgroundColor="#aaa"/>
-        <DrawerNavigation/>
+        {this.state.userLoggedIn ? <DrawerNavigation screenProps={{logOut: this._logOut.bind(this)}} /> : <StackNavigation/>}
       </View>
     )
   }

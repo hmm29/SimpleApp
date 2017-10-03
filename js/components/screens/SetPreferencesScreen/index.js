@@ -12,7 +12,9 @@ const SWIPER_REF = 'SetPreferencesSwiper',
       {height, width} = Dimensions.get('window'); /* gets screen dimensions */
 
 export default class SetPreferencesScreen extends Component {
+  componentDidMount() {
   
+  }
   
   render() {
     const {navigate} = this.props.navigation;
@@ -22,7 +24,7 @@ export default class SetPreferencesScreen extends Component {
               bounces={true}
               showsPagination={true}
               loop={false}>
-          <ScreenBase>
+          <ScreenBase navigate={navigate}>
             <PreferenceSelect
               title="How far will you drive for a pick-up?"
               buttons={['5 min', '10 min', '20 min', 'Any']}

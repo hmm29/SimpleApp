@@ -22,7 +22,7 @@ export default class PreferenceDisplay extends Component {
       <View style={styles.container}>
         <UITitle style={styles.sectionTitle}>{sectionTitle}</UITitle>
         <ScrollView style={styles.sectionContent}>
-        {Object.keys(preferences) && Object.keys(preferences).map((fieldName, i) =>
+        {Object.keys(preferences).map((fieldName, i) =>
           <View key={i} style={styles.preferenceDisplay}>
             <UITitle style={styles.fieldName}>
               {fieldName}:
