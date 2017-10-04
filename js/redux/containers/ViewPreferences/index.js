@@ -14,7 +14,7 @@ const {width, height} = Dimensions.get('window');
 export default class ViewPreferences extends Component {
   
   render() {
-    const {logOut} = this.props.screenProps;
+    const {logout} = this.props.screenProps;
     const {navigate} = this.props.navigation;
     
     return (
@@ -27,7 +27,7 @@ export default class ViewPreferences extends Component {
           carpoolServicesAvailable: 'No'}} />
         <UIButtonsWrapper>
           <UIButton onPress={() => navigate('SetPreferences')} title="Change Preferences" style={styles.button}/>
-          <UIButton onPress={() => {}} title="LogOut" style={styles.button}/>
+          <UIButton onPress={() => logout()} title="Log Out" style={styles.button}/>
         </UIButtonsWrapper>
       </ScreenBase>
     )

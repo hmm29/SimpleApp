@@ -34,22 +34,14 @@ class Main extends Component {
     }
   }
   
-  // componentWillMount() {
-  //   auth0
-  //     .webAuth
-  //     .authorize({scope: 'openid email', audience: 'https://hmax.auth0.com/userinfo'})
-  //     .then(credentials => {
-  //
-  //       const {accessToken, tokenType, expiresIn} = credentials;
-  //
-  //       AsyncStorage.multiSet([["@SimpleAppStore:accessToken", accessToken],
-  //         ["@SimpleAppStore:tokenType", tokenType], ["@SimpleAppStore:expiresIn", JSON.stringify(expiresIn)]]);
-  //
-  //       this.setState({isLoggedIn: true});
-  //     })
-  //     .catch(error => alert(error));
-  // }
-  //
+  componentWillMount() {
+    AsyncStorage.getItem("isLoggedIn")
+      .then((result) => {
+        if(result !== null) this.setState({isLoggedIn: true})
+      })
+      .catch((error) => console.log(error.message));
+  }
+
   
   _createUser(email, password) {
     auth0
@@ -57,6 +49,10 @@ class Main extends Component {
       .createUser({email, password, connection: 'Username-Password-Authentication'})
       .then((data) => {
       console.log(JSON.stringify(data));
+      AlertIOS.alert('Registration Success', `Welcome ${data.email}!`);
+      AsyncStorage.setItem("isLoggedIn", "true")
+        .then((result) => console.log(result))
+        .catch((error) => console.log(error.message));
       this.setState({isLoggedIn: true});
       })
       .catch((error) => alert(JSON.stringify(error)));
@@ -68,16 +64,36 @@ class Main extends Component {
       .passwordRealm({username: email, password, realm: "Username-Password-Authentication"})
       .then((data) => {
         console.log(JSON.stringify(data));
+        AlertIOS.alert('Login Success', `You're logged in!`);
+        AsyncStorage.setItem("isLoggedIn", "true")
+          .then((result) => console.log(result))
+          .catch((error) => console.log(error.message));
         this.setState({isLoggedIn: true});
       })
       .catch((error) => alert(JSON.stringify(error)));
+  }
+  
+  _logout(parameters) {
+    let logoutUrl =
+      auth0
+      .auth
+      .logoutUrl(parameters)
+    
+    fetch(logoutUrl).then((response) => {
+      console.log(JSON.stringify(response));
+      AlertIOS.alert('Logout Success', `You've logged out.`);
+      AsyncStorage.removeItem("isLoggedIn")
+        .then((result) => console.log(result))
+        .catch((error) => console.log(error.message));
+      this.setState({isLoggedIn: false});
+    }).catch((error) => console.log(error.message))
   }
   
   render() {
     return (
         <View style={styles.appContainer}>
           <StatusBar barStyle="dark-content" backgroundColor="#aaa"/>
-          {this.state.isLoggedIn ? <DrawerNavigation screenProps={{}} /> : <StackNavigation screenProps={{createUser: this._createUser.bind(this), login: this._login.bind(this)}} />}
+          {this.state.isLoggedIn ? <DrawerNavigation screenProps={{logout: () => this._logout.call(this, {clientId: '7cjbXwTO7Lx-ixyt10t4GczxF19eAONO'})}} /> : <StackNavigation screenProps={{createUser: this._createUser.bind(this), login: this._login.bind(this)}} />}
         </View>
     )
   }
