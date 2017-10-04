@@ -19,39 +19,41 @@ export default class SetPreferencesScreen extends Component {
   render() {
     const {navigate} = this.props.navigation;
     return (
+      <ScreenBase navigate={navigate}>
       <Swiper ref={SWIPER_REF}
               snapToAlignment='center'
               bounces={true}
               showsPagination={true}
               loop={false}>
-          <ScreenBase navigate={navigate}>
-            <PreferenceSelect
-              title="How far will you drive for a pick-up?"
-              buttons={['5 min', '10 min', '20 min', 'Any']}
-              setPreference={() => alert('hey babe')}/>
-            <PreferenceSelect
-              title="What's the lowest passenger rating you'll accept?"
-              buttons={['4.5', '4.0', '3.5', 'Any']}
-              setPreference={() => alert('set this')}/>
-          </ScreenBase>
-          <ScreenBase>
-            <PreferenceSelect
-              title="What app should always be active?"
-              buttons={['Uber', 'Lyft']}
-              setPreference={() => alert('hey babe')}/>
-            <PreferenceSelect
-              title="And when should the other come on-line?"
-              buttons={['Always', 'If no rider for 5 min', 'If no rider for 10 min', 'If no rider for 15 min']}
-              setPreference={() => alert('set this')}/>
-          </ScreenBase>
-          <ScreenBase>
-            <PreferenceSelect
-              title="Do you want rides from carpool services?"
-              buttons={['Yes', 'No']}
-              setPreference={() => alert('hey babe')}/>
-           <UIButton onPress={() => navigate('ViewPreferences')} title="Done" style={styles.doneButton} />
-          </ScreenBase>
-      </Swiper>
+            <ScreenBase>
+              <PreferenceSelect
+                title="How far will you drive for a pick-up?"
+                buttons={['5 min', '10 min', '20 min', 'Any']}
+                setPreference={() => alert('hey babe')}/>
+              <PreferenceSelect
+                title="What's the lowest passenger rating you'll accept?"
+                buttons={['4.5', '4.0', '3.5', 'Any']}
+                setPreference={() => alert('set this')}/>
+            </ScreenBase>
+            <ScreenBase>
+              <PreferenceSelect
+                title="What app should always be active?"
+                buttons={['Uber', 'Lyft']}
+                setPreference={() => alert('hey babe')}/>
+              <PreferenceSelect
+                title="And when should the other come on-line?"
+                buttons={['Always', 'If no rider for 5 min', 'If no rider for 10 min', 'If no rider for 15 min']}
+                setPreference={() => alert('set this')}/>
+            </ScreenBase>
+            <ScreenBase>
+              <PreferenceSelect
+                title="Do you want rides from carpool services?"
+                buttons={['Yes', 'No']}
+                setPreference={() => alert('hey babe')}/>
+             <UIButton onPress={() => navigate('ViewPreferences')} title="Done" style={styles.doneButton} />
+            </ScreenBase>
+        </Swiper>
+      </ScreenBase>
     )
   }
 }

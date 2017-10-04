@@ -64,9 +64,7 @@ export default class LoginScreen extends Component {
         <Form
           ref="form"
           type={LogIn}/>
-        <UIButton style={styles.button} onPress={this.onPress}>
-          Log In
-        </UIButton>
+        <UIButton title="Log In" style={styles.button} onPress={this._onPress}/>
       </ScreenBase>
     )
   }

@@ -2,15 +2,18 @@
  * Created by harrisonmiller on 10/3/17.
  */
 import React, {Component} from 'react';
-import {StatusBar, View} from 'react-native';
+import {AlertIOS, AsyncStorage, StatusBar, View} from 'react-native';
 import {DrawerNavigator, StackNavigator} from 'react-navigation';
 import {connect} from 'react-redux';
+import Auth0 from 'react-native-auth0';
 
 import AuthScreen from './screens/AuthScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import SetPreferencesScreen from './screens/SetPreferencesScreen';
 import ViewPreferencesScreen from './screens/ViewPreferencesScreen';
+
+const auth0 = new Auth0({ domain: 'hmax.auth0.com', clientId: '7cjbXwTO7Lx-ixyt10t4GczxF19eAONO' });
 
 const DrawerNavigation = DrawerNavigator({
   SetPreferences: {screen: SetPreferencesScreen},
@@ -24,11 +27,34 @@ const StackNavigation = StackNavigator({
 })
 
 class Application extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: false
+    }
+  }
+  
+  componentWillMount() {
+    auth0
+      .webAuth
+      .authorize({scope: 'openid email', audience: 'https://hmax.auth0.com/userinfo'})
+      .then(credentials => {
+        
+        const {accessToken, tokenType, expiresIn} = credentials;
+        
+        AsyncStorage.multiSet([["@SimpleAppStore:accessToken", accessToken],
+          ["@SimpleAppStore:tokenType", tokenType], ["@SimpleAppStore:expiresIn", JSON.stringify(expiresIn)]]);
+
+        this.setState({isLoggedIn: true});
+      })
+      .catch(error => alert(error));
+  }
+  
   render() {
     return (
         <View style={styles.appContainer}>
           <StatusBar barStyle="dark-content" backgroundColor="#aaa"/>
-          {this.props.isLoggedIn ? <DrawerNavigation screenProps={{}} /> : <StackNavigation/>}
+          {this.state.isLoggedIn ? <DrawerNavigation screenProps={{}} /> : <StackNavigation/>}
         </View>
     )
   }
@@ -40,7 +66,7 @@ const styles = {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.auth.isLoggedIn
   };

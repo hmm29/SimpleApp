@@ -44,9 +44,7 @@ export default class RegisterScreen extends Component {
         <Form
           ref="form"
           type={Register}/>
-        <UIButton style={styles.button} onPress={this.onPress}>
-          Register
-        </UIButton>
+        <UIButton title="Register" style={styles.button} onPress={this._onPress}/>
       </ScreenBase>
     )
   }
