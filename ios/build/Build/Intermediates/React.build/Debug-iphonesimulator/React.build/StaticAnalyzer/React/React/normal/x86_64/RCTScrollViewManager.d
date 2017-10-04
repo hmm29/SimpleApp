@@ -1,0 +1,32 @@
+dependencies: \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Views/RCTScrollViewManager.m \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Views/RCTScrollViewManager.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Base/RCTConvert.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Views/RCTAnimationType.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Views/RCTBorderStyle.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Views/RCTPointerEvents.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Views/RCTTextDecorationLineType.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Views/RCTViewManager.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Base/RCTEventDispatcher.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Views/UIView+React.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Views/RCTComponent.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Views/RCTScrollView.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Views/RCTAutoInsetsProtocol.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Views/RCTScrollableProtocol.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Views/RCTView.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Views/RCTShadowView.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Base/RCTRootView.h \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/React/Modules/RCTUIManager.h

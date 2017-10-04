@@ -12,6 +12,7 @@ import {
   AlertIOS} from 'react-native';
 
 import ScreenBase from '../ScreenBase';
+import UIButton from '../../partials/UIButton';
 import t from 'tcomb-form-native';
 
 const {height} = Dimensions.get('window');
@@ -24,8 +25,28 @@ const LogIn = t.struct({
 
 
 export default class LoginScreen extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      route: 'Login',
+      username: '',
+      password: ''
+    };
+  }
+  
   static navigationOptions = {
     title: 'Log In'
+  }
+  
+  userLogin (e) {
+    this.props.onLogin(this.state.username, this.state.password);
+    e.preventDefault();
+  }
+  
+  toggleRoute (e) {
+    let alt = (this.state.route === 'Login') ? 'SignUp' : 'Login';
+    this.setState({ route: alt });
+    e.preventDefault();
   }
   
   _onPress() {
@@ -42,11 +63,10 @@ export default class LoginScreen extends Component {
       <ScreenBase>
         <Form
           ref="form"
-          type={LogIn}
-        />
-        <TouchableOpacity style={styles.button} onPress={this.onPress}>
-          <Text style={styles.buttonText}>Log In</Text>
-        </TouchableOpacity>
+          type={LogIn}/>
+        <UIButton style={styles.button} onPress={this.onPress}>
+          Log In
+        </UIButton>
       </ScreenBase>
     )
   }

@@ -5,16 +5,13 @@ import React, {Component} from 'react';
 import {Dimensions} from 'react-native';
 
 import ScreenBase from '../ScreenBase';
-import UITitle from '../../partials/UITitle';
 import UIButton from "../../partials/UIButton";
 import UIButtonsWrapper from '../../partials/UIButtonsWrapper';
-import {logOut} from '../../../auth';
 import PreferenceDisplay from '../../partials/PreferenceDisplay';
 
 const {width, height} = Dimensions.get('window');
 
 export default class ViewPreferencesScreen extends Component {
-  
   
   render() {
     const {logOut} = this.props.screenProps;
@@ -30,7 +27,7 @@ export default class ViewPreferencesScreen extends Component {
           carpoolServicesAvailable: 'No'}} />
         <UIButtonsWrapper>
           <UIButton onPress={() => navigate('SetPreferences')} title="Change Preferences" style={styles.button}/>
-          <UIButton onPress={() => logOut()} title="LogOut" style={styles.button}/>
+          <UIButton onPress={() => {}} title="LogOut" style={styles.button}/>
         </UIButtonsWrapper>
       </ScreenBase>
     )

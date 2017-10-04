@@ -13,11 +13,12 @@ import {
 
 import ScreenBase from '../ScreenBase';
 import t from 'tcomb-form-native';
+import UIButton from "../../partials/UIButton";
 
 const {height} = Dimensions.get('window');
 const Form = t.form.Form;
 
-const LogIn = t.struct({
+const Register = t.struct({
   email: t.String,
   password: t.String,
 });
@@ -42,21 +43,16 @@ export default class RegisterScreen extends Component {
       <ScreenBase>
         <Form
           ref="form"
-          type={LogIn}
-        />
-        <TouchableOpacity style={styles.button} onPress={this.onPress} underlayColor='#99d9f4'>
-          <Text style={styles.buttonText}>Register</Text>
-        </TouchableOpacity>
+          type={Register}/>
+        <UIButton style={styles.button} onPress={this.onPress}>
+          Register
+        </UIButton>
       </ScreenBase>
     )
   }
 }
 
 const styles = {
-  buttonText: {
-    fontSize: height/40,
-    textAlign: 'center'
-  },
   button: {
     height: height/10,
     borderWidth: 1,

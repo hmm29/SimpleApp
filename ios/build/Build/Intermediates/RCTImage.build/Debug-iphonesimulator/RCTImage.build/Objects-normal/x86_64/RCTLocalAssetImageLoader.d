@@ -1,0 +1,25 @@
+dependencies: \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/Libraries/Image/RCTLocalAssetImageLoader.m \
+  /Users/harrisonmiller/Code/SimpleApp/node_modules/react-native/Libraries/Image/RCTLocalAssetImageLoader.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTImageLoader.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridge.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeDelegate.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTJavaScriptLoader.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTResizeMode.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTConvert.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAnimationType.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBorderStyle.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTPointerEvents.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTTextDecorationLineType.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTURLRequestHandler.h \
+  /Users/harrisonmiller/Code/SimpleApp/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTURLRequestDelegate.h
