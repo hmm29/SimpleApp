@@ -1,6 +1,6 @@
 {
-  "pickupDistanceTimeInMinutes": 5,
-  "lowestPassengerRatingAllowed": 5,
+  "pickupDistanceTimeInMinutes": "5 min",
+  "lowestPassengerRatingAllowed": "4.5",
   "alwaysActiveApp": "Lyft",
   "secondaryAppOnlineCondition": "Always",
   "carpoolServicesAvailable": "No"
