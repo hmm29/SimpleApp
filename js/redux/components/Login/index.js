@@ -14,8 +14,9 @@ import {
 import ScreenBase from '../ScreenBase';
 import UIButton from '../UIButton';
 import t from 'tcomb-form-native';
+import PropTypes from 'prop-types';
 
-const {height} = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 const Form = t.form.Form;
 
 const loginForm = t.struct({
@@ -23,36 +24,29 @@ const loginForm = t.struct({
   password: t.String,
 });
 
+const options = {
+  fields: {
+    password: {
+      password: true,
+      secureTextEntry: true
+    }
+  }
+};
 
 export default class Login extends Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      route: 'Login',
-      username: '',
-      password: ''
-    };
-  }
-  
   static navigationOptions = {
     title: 'Log In'
   }
   
-  userLogin (e) {
-    this.props.onLogin(this.state.username, this.state.password);
-    e.preventDefault();
-  }
   
-  toggleRoute (e) {
-    let alt = (this.state.route === 'Login') ? 'SignUp' : 'Login';
-    this.setState({ route: alt });
-    e.preventDefault();
+  static PropTypes = {
+    screenProps: PropTypes.object
   }
   
   _onPress() {
     let value = this.refs.form.getValue();
     if (value) {
-      console.log(value);
+      this.props.screenProps.login(value.email, value.password);
     }
   }
   
@@ -63,8 +57,9 @@ export default class Login extends Component {
       <ScreenBase>
         <Form
           ref="form"
-          type={loginForm}/>
-        <UIButton title="Log In" style={styles.button} onPress={this._onPress}/>
+          type={loginForm}
+          options={options}/>
+        <UIButton title="Log In" style={styles.button} onPress={this._onPress.bind(this)}/>
       </ScreenBase>
     )
   }
@@ -76,7 +71,8 @@ const styles = {
     textAlign: 'center'
   },
   button: {
-    height: height/10,
+    width: width-20,
+    height: height/8,
     borderWidth: 1,
     borderColor: '#aaa',
     borderRadius: 5,

@@ -32,12 +32,13 @@ const styles = {
     flexDirection: 'column'
   },
   button: {
-    width,
+    width: width-20,
     height: height/8,
     borderWidth: 1,
     borderColor: '#aaa',
     borderRadius: 5,
     marginVertical: height/40,
+    marginHorizontal: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
   },

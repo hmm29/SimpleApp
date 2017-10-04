@@ -42,6 +42,7 @@ const styles = {
   icon: {
     width: width/20,
     height: height/25,
+    padding: height/40
   },
   navButton: {
     position: 'absolute',

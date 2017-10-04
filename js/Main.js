@@ -34,27 +34,50 @@ class Main extends Component {
     }
   }
   
-  componentWillMount() {
+  // componentWillMount() {
+  //   auth0
+  //     .webAuth
+  //     .authorize({scope: 'openid email', audience: 'https://hmax.auth0.com/userinfo'})
+  //     .then(credentials => {
+  //
+  //       const {accessToken, tokenType, expiresIn} = credentials;
+  //
+  //       AsyncStorage.multiSet([["@SimpleAppStore:accessToken", accessToken],
+  //         ["@SimpleAppStore:tokenType", tokenType], ["@SimpleAppStore:expiresIn", JSON.stringify(expiresIn)]]);
+  //
+  //       this.setState({isLoggedIn: true});
+  //     })
+  //     .catch(error => alert(error));
+  // }
+  //
+  
+  _createUser(email, password) {
     auth0
-      .webAuth
-      .authorize({scope: 'openid email', audience: 'https://hmax.auth0.com/userinfo'})
-      .then(credentials => {
-        
-        const {accessToken, tokenType, expiresIn} = credentials;
-        
-        AsyncStorage.multiSet([["@SimpleAppStore:accessToken", accessToken],
-          ["@SimpleAppStore:tokenType", tokenType], ["@SimpleAppStore:expiresIn", JSON.stringify(expiresIn)]]);
-
+      .auth
+      .createUser({email, password, connection: 'Username-Password-Authentication'})
+      .then((data) => {
+      console.log(JSON.stringify(data));
+      this.setState({isLoggedIn: true});
+      })
+      .catch((error) => alert(JSON.stringify(error)));
+  }
+  
+  _login(email, password) {
+    auth0
+      .auth
+      .passwordRealm({username: email, password, realm: "Username-Password-Authentication"})
+      .then((data) => {
+        console.log(JSON.stringify(data));
         this.setState({isLoggedIn: true});
       })
-      .catch(error => alert(error));
+      .catch((error) => alert(JSON.stringify(error)));
   }
   
   render() {
     return (
         <View style={styles.appContainer}>
           <StatusBar barStyle="dark-content" backgroundColor="#aaa"/>
-          {this.state.isLoggedIn ? <DrawerNavigation screenProps={{}} /> : <StackNavigation/>}
+          {this.state.isLoggedIn ? <DrawerNavigation screenProps={{}} /> : <StackNavigation screenProps={{createUser: this._createUser.bind(this), login: this._login.bind(this)}} />}
         </View>
     )
   }
