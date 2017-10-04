@@ -17,7 +17,6 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "auth0-js": "^8.10.1",
     "prop-types": "^15.6.0",
     "react": "16.0.0-alpha.12",
     "react-native": "^0.48.4",

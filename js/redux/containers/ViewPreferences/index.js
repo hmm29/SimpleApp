@@ -14,12 +14,12 @@ const {width, height} = Dimensions.get('window');
 export default class ViewPreferences extends Component {
   
   render() {
-    const {logout} = this.props.screenProps;
-    const {navigate} = this.props.navigation;
+    const {logout} = this.props.screenProps,
+          {navigate} = this.props.navigation;
     
     return (
       <ScreenBase navigate={navigate}>
-        <PreferenceDisplay sectionTitle="Settings" preferences={{
+        <PreferenceDisplay title="Preferences" preferences={{
           pickupDistanceTimeInMinutes: 5,
           lowestPassengerRatingAllowed: 5,
           alwaysActiveApp: 'Lyft',

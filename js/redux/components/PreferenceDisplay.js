@@ -12,16 +12,16 @@ const {height} = Dimensions.get('window');
 export default class PreferenceDisplay extends Component {
   static propTypes = {
     preferences: PropTypes.object.isRequired,
-    sectionTitle: PropTypes.string
+    title: PropTypes.string
   }
   
   render() {
-    const {preferences, sectionTitle} = this.props;
+    const {preferences, title} = this.props;
     
     return (
       <View style={styles.container}>
-        <UITitle style={styles.sectionTitle}>{sectionTitle}</UITitle>
-        <ScrollView style={styles.sectionContent}>
+        <UITitle style={styles.title}>{title}</UITitle>
+        <ScrollView style={styles.content}>
         {Object.keys(preferences).map((fieldName, i) =>
           <View key={i} style={styles.preferenceDisplay}>
             <UITitle style={styles.fieldName}>
@@ -55,9 +55,7 @@ const styles = {
     alignItems: 'center',
     marginVertical: height/40
   },
-  sectionContent: {
-  },
-  sectionTitle: {
+  title: {
     marginTop: height/20,
     marginBottom: height/15
   }
