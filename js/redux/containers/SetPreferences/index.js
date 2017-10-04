@@ -3,15 +3,15 @@
  */
 import React, {Component} from 'react';
 import {Dimensions} from 'react-native';
-import ScreenBase from '../ScreenBase';
-import PreferenceSelect from '../../partials/PreferenceSelect';
-import UIButton from '../../partials/UIButton';
+import ScreenBase from '../../components/ScreenBase';
+import PreferenceSelect from '../../components/PreferenceSelect';
+import UIButton from '../../components/UIButton';
 import Swiper from 'react-native-swiper';
 
 const SWIPER_REF = 'SetPreferencesSwiper',
       {height, width} = Dimensions.get('window'); /* gets screen dimensions */
 
-export default class SetPreferencesScreen extends Component {
+export default class SetPreferences extends Component {
   componentDidMount() {
   
   }

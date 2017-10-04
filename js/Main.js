@@ -7,26 +7,26 @@ import {DrawerNavigator, StackNavigator} from 'react-navigation';
 import {connect} from 'react-redux';
 import Auth0 from 'react-native-auth0';
 
-import AuthScreen from './screens/AuthScreen';
-import LoginScreen from './screens/LoginScreen';
-import RegisterScreen from './screens/RegisterScreen';
-import SetPreferencesScreen from './screens/SetPreferencesScreen';
-import ViewPreferencesScreen from './screens/ViewPreferencesScreen';
+import Auth from './redux/components/Auth/index';
+import Login from './redux/components/Login/index';
+import Register from './redux/components/Register/index';
+import SetPreferences from './redux/containers/SetPreferences/index';
+import ViewPreferences from './redux/containers/ViewPreferences/index';
 
 const auth0 = new Auth0({ domain: 'hmax.auth0.com', clientId: '7cjbXwTO7Lx-ixyt10t4GczxF19eAONO' });
 
 const DrawerNavigation = DrawerNavigator({
-  SetPreferences: {screen: SetPreferencesScreen},
-  ViewPreferences: {screen: ViewPreferencesScreen}
+  SetPreferences: {screen: SetPreferences},
+  ViewPreferences: {screen: ViewPreferences}
 });
 
 const StackNavigation = StackNavigator({
-  Home: {screen: AuthScreen},
-  Login: {screen: LoginScreen},
-  Register: {screen: RegisterScreen},
+  Home: {screen: Auth},
+  Login: {screen: Login},
+  Register: {screen: Register},
 })
 
-class Application extends Component {
+class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -72,4 +72,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps)(Application);
+export default connect(mapStateToProps)(Main);

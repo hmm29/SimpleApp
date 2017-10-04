@@ -13,18 +13,18 @@ import {
 
 import ScreenBase from '../ScreenBase';
 import t from 'tcomb-form-native';
-import UIButton from "../../partials/UIButton";
+import UIButton from "../UIButton";
 
 const {height} = Dimensions.get('window');
 const Form = t.form.Form;
 
-const Register = t.struct({
+const registerForm = t.struct({
   email: t.String,
   password: t.String,
 });
 
 
-export default class RegisterScreen extends Component {
+export default class Register extends Component {
   static navigationOptions = {
     title: 'Register'
   }
@@ -43,7 +43,7 @@ export default class RegisterScreen extends Component {
       <ScreenBase>
         <Form
           ref="form"
-          type={Register}/>
+          type={registerForm}/>
         <UIButton title="Register" style={styles.button} onPress={this._onPress}/>
       </ScreenBase>
     )

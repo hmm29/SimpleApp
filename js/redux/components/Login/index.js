@@ -12,19 +12,19 @@ import {
   AlertIOS} from 'react-native';
 
 import ScreenBase from '../ScreenBase';
-import UIButton from '../../partials/UIButton';
+import UIButton from '../UIButton';
 import t from 'tcomb-form-native';
 
 const {height} = Dimensions.get('window');
 const Form = t.form.Form;
 
-const LogIn = t.struct({
+const loginForm = t.struct({
   email: t.String,
   password: t.String,
 });
 
 
-export default class LoginScreen extends Component {
+export default class Login extends Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -63,7 +63,7 @@ export default class LoginScreen extends Component {
       <ScreenBase>
         <Form
           ref="form"
-          type={LogIn}/>
+          type={loginForm}/>
         <UIButton title="Log In" style={styles.button} onPress={this._onPress}/>
       </ScreenBase>
     )
