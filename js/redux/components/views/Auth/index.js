@@ -4,8 +4,8 @@
 import React, {Component} from 'react';
 import {AsyncStorage, Dimensions, TouchableOpacity, Text} from 'react-native';
 import ScreenBase from '../ScreenBase';
-import UIButtonsWrapper from '../UIButtonsWrapper';
-import UIButton from '../UIButton';
+import UIButtonsWrapper from '../../partials/UIButtonsWrapper';
+import UIButton from '../../partials/UIButton';
 const {width, height} = Dimensions.get('window');
 
 export default class Auth extends Component {

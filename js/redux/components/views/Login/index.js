@@ -12,7 +12,7 @@ import {
   AlertIOS} from 'react-native';
 
 import ScreenBase from '../ScreenBase';
-import UIButton from '../UIButton';
+import UIButton from '../../partials/UIButton';
 import t from 'tcomb-form-native';
 import PropTypes from 'prop-types';
 
@@ -51,8 +51,6 @@ export default class Login extends Component {
   }
   
   render() {
-    const {navigate} = this.props.navigation;
-    
     return (
       <ScreenBase>
         <Form

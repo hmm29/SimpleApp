@@ -3,14 +3,14 @@
  */
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import Main from './js/Main';
+import Application from './js/redux/containers/Application';
 import store from './js/redux';
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Main />
+        <Application />
       </Provider>
     );
   }

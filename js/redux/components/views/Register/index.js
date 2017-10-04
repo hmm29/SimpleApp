@@ -14,7 +14,7 @@ import {
 import ScreenBase from '../ScreenBase';
 import t from 'tcomb-form-native';
 import PropTypes from 'prop-types';
-import UIButton from "../UIButton";
+import UIButton from "../../partials/UIButton";
 
 const {width, height} = Dimensions.get('window');
 const Form = t.form.Form;
@@ -50,8 +50,6 @@ export default class Register extends Component {
   }
   
   render() {
-    const {navigate} = this.props.navigation;
-    
     return (
       <ScreenBase>
         <Form

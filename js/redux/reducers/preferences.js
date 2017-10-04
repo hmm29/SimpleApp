@@ -2,10 +2,11 @@
  * Created by harrisonmiller on 10/3/17.
  */
 const defaultState = {
-    pickupDistanceTimeInMinutes: 5,
-    lowestPassengerRatingAllowed: 5,
+    pickupDistanceTimeInMinutes: '5 min',
+    lowestPassengerRatingAllowed: '4.5',
     alwaysActiveApp: 'Lyft',
-    secondaryAppOnlineCondition: 'Always'
+    secondaryAppOnlineCondition: 'Always',
+    carpoolServicesAvailable: 'No'
 };
 
 export default function reducer(state = defaultState, action) {

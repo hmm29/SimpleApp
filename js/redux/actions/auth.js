@@ -1,21 +1,16 @@
 /**
  * Created by harrisonmiller on 10/3/17.
  */
-export const login = (username, password) => {
+export const login = (currentUserId, currentUserEmail) => {
   return {
     type: 'LOGIN',
-    username: username,
-    password: password
+    currentUserId,
+    currentUserEmail
   };
 };
 
 export const logout = () => {
   return {
-    type: 'LOGOUT'
-  };
-};
-
-export const signup = (username, password) => {
-  return (dispatch) => {
+    type: 'LOGOUT',
   };
 };

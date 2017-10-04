@@ -3,60 +3,66 @@
  */
 import React, {Component} from 'react';
 import {Dimensions} from 'react-native';
-import ScreenBase from '../../components/ScreenBase';
-import PreferenceSelect from '../../components/PreferenceSelect';
-import UIButton from '../../components/UIButton';
+import {connect} from 'react-redux';
+import {setPreference} from '../../actions/preferences';
+
+import ScreenBase from '../../components/views/ScreenBase';
+import PreferenceSelect from '../../components/partials/PreferenceSelect';
+import UIButton from '../../components/partials/UIButton';
 import Swiper from 'react-native-swiper';
 
 const SWIPER_REF = 'SetPreferencesSwiper',
-      {height, width} = Dimensions.get('window'); /* gets screen dimensions */
+  {height} = Dimensions.get('window');
 
-export default class SetPreferences extends Component {
-  componentDidMount() {
-  
-  }
-  
+class SetPreferences extends Component {
   render() {
-    const {navigate} = this.props.navigation;
+    const {preferences, setPreference, navigation} = this.props,
+      {navigate} = navigation;
+    
     return (
       <ScreenBase navigate={navigate}>
-      <Swiper ref={SWIPER_REF}
-              snapToAlignment='center'
-              bounces={true}
-              showsPagination={true}
-              loop={false}>
-            <ScreenBase>
-              <PreferenceSelect
-                title="How far will you drive for a pick-up?"
-                options={['5 min', '10 min', '20 min', 'Any']}
-                active="5 min"
-                setPreference={() => alert('hey babe')}/>
-              <PreferenceSelect
-                title="What's the lowest passenger rating you'll accept?"
-                options={['4.5', '4.0', '3.5', 'Any']}
-                active="3.5"
-                setPreference={() => alert('set this')}/>
-            </ScreenBase>
-            <ScreenBase>
-              <PreferenceSelect
-                title="What app should always be active?"
-                options={['Uber', 'Lyft']}
-                active="Uber"
-                setPreference={() => alert('hey babe')}/>
-              <PreferenceSelect
-                title="And when should the other come on-line?"
-                options={['Always', 'If no rider for 5 min', 'If no rider for 10 min', 'If no rider for 15 min']}
-                active="Always"
-                setPreference={() => alert('set this')}/>
-            </ScreenBase>
-            <ScreenBase>
-              <PreferenceSelect
-                title="Do you want rides from carpool services?"
-                options={['Yes', 'No']}
-                active="Yes"
-                setPreference={() => alert('hey babe')}/>
-             <UIButton onPress={() => navigate('ViewPreferences')} title="Done" style={styles.doneButton} />
-            </ScreenBase>
+        <Swiper ref={SWIPER_REF}
+                snapToAlignment='center'
+                bounces={true}
+                showsPagination={true}
+                loop={false}>
+          <ScreenBase>
+            <PreferenceSelect
+              key="pickupDistanceTimeInMinutes"
+              prompt="How far will you drive for a pick-up?"
+              options={['5 min', '10 min', '20 min', 'Any']}
+              active={preferences.pickupDistanceTimeInMinutes}
+              setPreference={setPreference}/>
+            <PreferenceSelect
+              key="lowestPassengerRatingAllowed"
+              prompt="What's the lowest passenger rating you'll accept?"
+              options={['4.5', '4.0', '3.5', 'Any']}
+              active={preferences.lowestPassengerRatingAllowed}
+              setPreference={setPreference}/>
+          </ScreenBase>
+          <ScreenBase>
+            <PreferenceSelect
+              key="alwaysActiveApp"
+              prompt="What app should always be active?"
+              options={['Uber', 'Lyft']}
+              active={preferences.alwaysActiveApp}
+              setPreference={setPreference}/>
+            <PreferenceSelect
+              key="secondaryAppOnlineCondition"
+              prompt="And when should the other come on-line?"
+              options={['Always', 'If no rider for 5 min', 'If no rider for 10 min', 'If no rider for 15 min']}
+              active={preferences.secondaryAppOnlineCondition}
+              setPreference={setPreference}/>
+          </ScreenBase>
+          <ScreenBase>
+            <PreferenceSelect
+              key="carpoolServicesAvailable"
+              prompt="Do you want rides from carpool services?"
+              options={['Yes', 'No']}
+              active={preferences.carpoolServicesAvailable}
+              setPreference={setPreference}/>
+            <UIButton onPress={() => navigate('ViewPreferences')} title="Done" style={styles.doneButton}/>
+          </ScreenBase>
         </Swiper>
       </ScreenBase>
     )
@@ -66,9 +72,25 @@ export default class SetPreferences extends Component {
 const styles = {
   doneButton: {
     alignSelf: 'center',
-    marginVertical: height/8
+    marginVertical: height / 8
   },
   text: {
     fontSize: 20,
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    preferences: state.preferences
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setPreference: (preference) => {
+      dispatch(setPreference(preference));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SetPreferences);

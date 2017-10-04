@@ -17,7 +17,7 @@ export default class ScreenBase extends Component {
     const menuIcon = (
         <TouchableOpacity onPress={() => navigate('DrawerToggle')} style={styles.navButton}>
           <Image
-            source={require('../../../menu-icon.png')}
+            source={require('../../../../menu-icon.png')}
             style={styles.icon}/>
         </TouchableOpacity>
       );

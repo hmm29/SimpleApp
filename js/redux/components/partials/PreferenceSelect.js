@@ -12,23 +12,23 @@ import PropTypes from 'prop-types';
 export default class PreferenceSelect extends Component {
   static propTypes = {
     active: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
+    prompt: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired,
     setPreference: PropTypes.func.isRequired
   }
   
   render() {
-    const {active, title, options, setPreference} = this.props;
+    const {active, key, prompt, options, setPreference} = this.props;
     
     return (
       <View style={styles.container}>
         <UITitle>
-          {title}
+          {prompt}
         </UITitle>
         <UIButtonsWrapper>
           {options && options.map((option, i) =>
             <UIButton key={i} style={option === active ? {backgroundColor: 'lightblue'} : {}}
-                      onPress={setPreference.bind(this)}
+                      onPress={() => setPreference.call(this, {key: option})}
                       title={option} />)}
         </UIButtonsWrapper>
       </View>)
