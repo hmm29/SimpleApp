@@ -6,7 +6,9 @@ import {ActivityIndicator, AlertIOS, AsyncStorage, StatusBar, Text, View} from '
 import {DrawerNavigator, StackNavigator} from 'react-navigation';
 import defaultPreferences from '../../../data/defaultPreferences.json';
 import {connect} from 'react-redux';
-import {logout} from '../../actions/auth';
+import {login, logout} from '../../actions/auth';
+import {setPreference} from '../../actions/preferences';
+import {token} from '../../../data/token.json'
 import Auth0 from 'react-native-auth0';
 
 import Auth from '../../components/views/Auth/index';
@@ -16,7 +18,7 @@ import SetPreferences from '../SetPreferences/index';
 import ViewPreferences from '../ViewPreferences/index';
 
 const auth0 = new Auth0({domain: 'hmax.auth0.com', clientId: '7cjbXwTO7Lx-ixyt10t4GczxF19eAONO'});
-const LOGOUT_URL_PARAM = {clientId: '7cjbXwTO7Lx-ixyt10t4GczxF19eAONO'};
+const CLIENT_ID_PARAM = {clientId: '7cjbXwTO7Lx-ixyt10t4GczxF19eAONO'};
 
 const DrawerNavigation = DrawerNavigator({
   SetPreferences: {screen: SetPreferences},
@@ -37,7 +39,7 @@ class Application extends Component {
         email,
         password,
         connection: 'Username-Password-Authentication',
-        metadata: "" + defaultPreferences + ""
+        metadata: defaultPreferences
       })
       .then((userInfo) => {
         this._handleUserDataResponse(
@@ -45,7 +47,7 @@ class Application extends Component {
           'Registration Success',
           `Welcome, ${userInfo.email}!`);
       })
-      .catch((error) => alert(JSON.stringify(error)));
+      .catch((error) => console.log(error.message));
   }
   
   _getUserInfo(accessToken) {
@@ -60,11 +62,13 @@ class Application extends Component {
       })
   }
   
-  
   _handleUserDataResponse(userInfo, alertMessageTitle, alertMessageBody) {
-    this.props.onLogin(userInfo.id, userInfo.email);
-    this.props.setPreferences(JSON.parse(userInfo.metadata.preferences));
     AlertIOS.alert(alertMessageTitle, alertMessageBody);
+  
+    let currentUserId = userInfo.sub || 'auth0|' + userInfo.Id;
+
+    this.props.onLogin(currentUserId, userInfo.email);
+    this._updateStateWithDatabasePreferences(currentUserId);
   }
   
   _login(email, password) {
@@ -72,7 +76,7 @@ class Application extends Component {
       .auth
       .passwordRealm({username: email, password, realm: "Username-Password-Authentication"})
       .then((data) => this._getUserInfo(data.accessToken))
-      .catch((error) => alert(JSON.stringify(error)));
+      .catch((error) => AlertIOS.alert('Oops!', error.message));
   }
   
   _logout(params) {
@@ -87,15 +91,30 @@ class Application extends Component {
       .catch((error) => console.log(error.message))
   }
   
+  _updateStateWithDatabasePreferences(currentUserId) {
+    auth0.
+    users(token)
+      .getUser({id: currentUserId})
+      .then((data) => {
+        let preferences = data.userMetadata;
+        Object.keys(preferences).map((pref) => {
+          this.props.onSetPreference({pref: preferences[pref]});
+        })
+      })
+      .catch((error) => console.log(error.message));
+  
+    
+  }
+  
   _updateUserPreferencesInDatabase(currentUserId, preferences) {
     auth0
-      .users
+      .users(token)
       .patchUser({
-        id: currentUserId,
-        metadata: JSON.stringify(preferences)
-      })
-      .then((result) => console.log(result))
-      .catch((error) => console.log(error.message));
+          id: currentUserId,
+          metadata: preferences
+        })
+      .then((result) => console.log(JSON.stringify(result)))
+      .catch((error) => AlertIOS.alert('Something happened!', error.message));
   }
   
   render() {
@@ -113,7 +132,7 @@ class Application extends Component {
             <DrawerNavigation
               screenProps={{
                 currentUserEmail: this.props.currentUserEmail,
-                logout: () => this._logout.call(this, LOGOUT_URL_PARAM)
+                logout: () => this._logout.call(this, CLIENT_ID_PARAM)
               }}/>
             : <StackNavigation
               screenProps={{createUser: this._createUser.bind(this), login: this._login.bind(this)}}/>}
@@ -139,6 +158,7 @@ const styles = {
 const mapStateToProps = (state) => {
   return {
     currentUserId: state.auth.currentUserId,
+    currentUserEmail: state.auth.currentUserEmail,
     preferences: state.preferences
   };
 }
@@ -146,7 +166,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onLogin: (currentUserId, currentUserEmail) => dispatch(login(currentUserId, currentUserEmail)),
-    onLogout: () => dispatch(logout())
+    onLogout: () => dispatch(logout()),
+    onSetPreference: (preference) => dispatch(setPreference(preference))
   }
 }
 

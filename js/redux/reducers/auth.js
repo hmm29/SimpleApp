@@ -2,7 +2,8 @@
  * Created by harrisonmiller on 10/3/17.
  */
 const defaultState = {
-  currentUserId: ""
+  currentUserId: "",
+  currentUserEmail: ""
 };
 
 export default function reducer(state = defaultState, action) {

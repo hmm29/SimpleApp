@@ -18,7 +18,7 @@ export default class PreferenceSelect extends Component {
   }
   
   render() {
-    const {active, key, prompt, options, setPreference} = this.props;
+    const {active, item, prompt, options, setPreference} = this.props;
     
     return (
       <View style={styles.container}>
@@ -28,7 +28,7 @@ export default class PreferenceSelect extends Component {
         <UIButtonsWrapper>
           {options && options.map((option, i) =>
             <UIButton key={i} style={option === active ? {backgroundColor: 'lightblue'} : {}}
-                      onPress={() => setPreference.call(this, {key: option})}
+                      onPress={() => setPreference.call(this, {[item]: option})}
                       title={option} />)}
         </UIButtonsWrapper>
       </View>)

@@ -12,7 +12,7 @@ import PreferenceDisplay from '../../components/partials/PreferenceDisplay';
 
 const {width, height} = Dimensions.get('window');
 
-export default class ViewPreferences extends Component {
+class ViewPreferences extends Component {
   
   render() {
     const {

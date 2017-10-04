@@ -28,13 +28,13 @@ class SetPreferences extends Component {
                 loop={false}>
           <ScreenBase>
             <PreferenceSelect
-              key="pickupDistanceTimeInMinutes"
+              item="pickupDistanceTimeInMinutes"
               prompt="How far will you drive for a pick-up?"
               options={['5 min', '10 min', '20 min', 'Any']}
               active={preferences.pickupDistanceTimeInMinutes}
               setPreference={setPreference}/>
             <PreferenceSelect
-              key="lowestPassengerRatingAllowed"
+              item="lowestPassengerRatingAllowed"
               prompt="What's the lowest passenger rating you'll accept?"
               options={['4.5', '4.0', '3.5', 'Any']}
               active={preferences.lowestPassengerRatingAllowed}
@@ -42,13 +42,13 @@ class SetPreferences extends Component {
           </ScreenBase>
           <ScreenBase>
             <PreferenceSelect
-              key="alwaysActiveApp"
+              item="alwaysActiveApp"
               prompt="What app should always be active?"
               options={['Uber', 'Lyft']}
               active={preferences.alwaysActiveApp}
               setPreference={setPreference}/>
             <PreferenceSelect
-              key="secondaryAppOnlineCondition"
+              item="secondaryAppOnlineCondition"
               prompt="And when should the other come on-line?"
               options={['Always', 'If no rider for 5 min', 'If no rider for 10 min', 'If no rider for 15 min']}
               active={preferences.secondaryAppOnlineCondition}
@@ -56,7 +56,7 @@ class SetPreferences extends Component {
           </ScreenBase>
           <ScreenBase>
             <PreferenceSelect
-              key="carpoolServicesAvailable"
+              item="carpoolServicesAvailable"
               prompt="Do you want rides from carpool services?"
               options={['Yes', 'No']}
               active={preferences.carpoolServicesAvailable}
