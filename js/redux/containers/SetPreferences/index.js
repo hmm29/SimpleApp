@@ -29,26 +29,31 @@ export default class SetPreferences extends Component {
               <PreferenceSelect
                 title="How far will you drive for a pick-up?"
                 buttons={['5 min', '10 min', '20 min', 'Any']}
+                active="5 min"
                 setPreference={() => alert('hey babe')}/>
               <PreferenceSelect
                 title="What's the lowest passenger rating you'll accept?"
                 buttons={['4.5', '4.0', '3.5', 'Any']}
+                active="3.5"
                 setPreference={() => alert('set this')}/>
             </ScreenBase>
             <ScreenBase>
               <PreferenceSelect
                 title="What app should always be active?"
                 buttons={['Uber', 'Lyft']}
+                active="Uber"
                 setPreference={() => alert('hey babe')}/>
               <PreferenceSelect
                 title="And when should the other come on-line?"
                 buttons={['Always', 'If no rider for 5 min', 'If no rider for 10 min', 'If no rider for 15 min']}
+                active="Always"
                 setPreference={() => alert('set this')}/>
             </ScreenBase>
             <ScreenBase>
               <PreferenceSelect
                 title="Do you want rides from carpool services?"
                 buttons={['Yes', 'No']}
+                active="Yes"
                 setPreference={() => alert('hey babe')}/>
              <UIButton onPress={() => navigate('ViewPreferences')} title="Done" style={styles.doneButton} />
             </ScreenBase>

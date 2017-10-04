@@ -11,13 +11,14 @@ import PropTypes from 'prop-types';
 
 export default class PreferenceSelect extends Component {
   static propTypes = {
+    active: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     buttons: PropTypes.array.isRequired,
     setPreference: PropTypes.func.isRequired
   }
   
   render() {
-    const {title, buttons, setPreference} = this.props;
+    const {active, title, buttons, setPreference} = this.props;
     
     return (
       <View style={styles.container}>
@@ -25,7 +26,7 @@ export default class PreferenceSelect extends Component {
           {title}
         </UITitle>
         <UIButtonsWrapper>
-          {buttons && buttons.map((button, i) => <UIButton key={i} onPress={setPreference.bind(this)} title={button} />)}
+          {buttons && buttons.map((button, i) => <UIButton key={i} style={button === active ? {backgroundColor: 'lightblue'} : {}} onPress={setPreference.bind(this)} title={button} />)}
         </UIButtonsWrapper>
       </View>)
   }

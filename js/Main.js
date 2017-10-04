@@ -2,7 +2,7 @@
  * Created by harrisonmiller on 10/3/17.
  */
 import React, {Component} from 'react';
-import {AlertIOS, AsyncStorage, StatusBar, View} from 'react-native';
+import {ActivityIndicator, AlertIOS, AsyncStorage, StatusBar, Text, View} from 'react-native';
 import {DrawerNavigator, StackNavigator} from 'react-navigation';
 import {connect} from 'react-redux';
 import Auth0 from 'react-native-auth0';
@@ -30,14 +30,17 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: true,
       isLoggedIn: false
     }
   }
   
   componentWillMount() {
+    // check login status in local async storage
     AsyncStorage.getItem("isLoggedIn")
       .then((result) => {
         if(result !== null) this.setState({isLoggedIn: true})
+        this.setState({isLoading: false});
       })
       .catch((error) => console.log(error.message));
   }
@@ -46,16 +49,16 @@ class Main extends Component {
   _createUser(email, password) {
     auth0
       .auth
-      .createUser({email, password, connection: 'Username-Password-Authentication'})
-      .then((data) => {
-      console.log(JSON.stringify(data));
-      AlertIOS.alert('Registration Success', `Welcome ${data.email}!`);
-      AsyncStorage.setItem("isLoggedIn", "true")
-        .then((result) => console.log(result))
-        .catch((error) => console.log(error.message));
-      this.setState({isLoggedIn: true});
-      })
-      .catch((error) => alert(JSON.stringify(error)));
+        .createUser({email, password, connection: 'Username-Password-Authentication'})
+        .then((data) => {
+        console.log(JSON.stringify(data));
+        AlertIOS.alert('Registration Success', `Welcome ${data.email}!`);
+        AsyncStorage.setItem("isLoggedIn", "true")
+          .then((result) => console.log(result))
+          .catch((error) => console.log(error.message));
+        this.setState({isLoggedIn: true});
+        })
+        .catch((error) => alert(JSON.stringify(error)));
   }
   
   _login(email, password) {
@@ -73,11 +76,11 @@ class Main extends Component {
       .catch((error) => alert(JSON.stringify(error)));
   }
   
-  _logout(parameters) {
+  _logout(params) {
     let logoutUrl =
       auth0
       .auth
-      .logoutUrl(parameters)
+      .logoutUrl(params)
     
     fetch(logoutUrl).then((response) => {
       console.log(JSON.stringify(response));
@@ -90,10 +93,19 @@ class Main extends Component {
   }
   
   render() {
+    const loadingView = (
+      <View style={styles.loadingView}>
+        <ActivityIndicator size="large" />
+        <Text>Loading...</Text>
+      </View>);
+    
     return (
         <View style={styles.appContainer}>
           <StatusBar barStyle="dark-content" backgroundColor="#aaa"/>
-          {this.state.isLoggedIn ? <DrawerNavigation screenProps={{logout: () => this._logout.call(this, {clientId: '7cjbXwTO7Lx-ixyt10t4GczxF19eAONO'})}} /> : <StackNavigation screenProps={{createUser: this._createUser.bind(this), login: this._login.bind(this)}} />}
+          {this.state.isLoading ? loadingView :
+            (this.state.isLoggedIn ?
+              <DrawerNavigation screenProps={{logout: () => this._logout.call(this, {clientId: '7cjbXwTO7Lx-ixyt10t4GczxF19eAONO'})}} />
+            : <StackNavigation screenProps={{createUser: this._createUser.bind(this), login: this._login.bind(this)}} />)}
         </View>
     )
   }
@@ -102,6 +114,11 @@ class Main extends Component {
 const styles = {
   appContainer: {
     flex: 1
+  },
+  loadingView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 }
 
