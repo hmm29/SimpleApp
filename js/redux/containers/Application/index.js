@@ -7,7 +7,7 @@ import {DrawerNavigator, StackNavigator} from 'react-navigation';
 import defaultPreferences from '../../../data/defaultPreferences.json';
 import {connect} from 'react-redux';
 import {login, logout} from '../../actions/auth';
-import {setPreference} from '../../actions/preferences';
+import {setPreference, clearPreferences} from '../../actions/preferences';
 import {token} from '../../../data/token.json'
 import Auth0 from 'react-native-auth0';
 
@@ -66,8 +66,8 @@ class Application extends Component {
     AlertIOS.alert(alertMessageTitle, alertMessageBody);
     
     let currentUserId = userInfo.sub || 'auth0|' + userInfo.Id;
-    this.props.onLogin(currentUserId, userInfo.email);
     this._updateStateWithDatabasePreferences(currentUserId);
+    this.props.onLogin(currentUserId, userInfo.email);
   }
   
   _login(email, password) {
@@ -110,6 +110,7 @@ class Application extends Component {
         metadata: preferences
       })
       .then((result) => console.log(JSON.stringify(result)))
+      .then(() => this.props.onClearPreferences())
       .catch((error) => AlertIOS.alert('Something happened!', error.message));
   }
   
@@ -148,7 +149,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onLogin: (currentUserId, currentUserEmail) => dispatch(login(currentUserId, currentUserEmail)),
     onLogout: () => dispatch(logout()),
-    onSetPreference: (preference) => dispatch(setPreference(preference))
+    onSetPreference: (preference) => dispatch(setPreference(preference)),
+    onClearPreferences: () => dispatch(clearPreferences())
   }
 }
 

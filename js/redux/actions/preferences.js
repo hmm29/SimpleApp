@@ -7,3 +7,9 @@ export const setPreference = (preference) => {
     preference
   };
 }
+
+export const clearPreferences = () => {
+  return {
+    type: 'CLEAR_PREFERENCES'
+  }
+}

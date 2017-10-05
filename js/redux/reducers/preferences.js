@@ -7,6 +7,8 @@ export default function reducer(state = defaultState, action) {
   switch (action.type) {
     case 'SET_PREFERENCE':
       return Object.assign({}, state, action.preference);
+    case 'CLEAR_PREFERENCES':
+      return {};
     default:
       return state;
   }
