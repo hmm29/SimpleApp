@@ -22,12 +22,12 @@ it('has a login form', () => {
   const rendered = renderer.create(<Login />).toJSON(),
         instance = rendered.root;
   
-  expect(instance.findByType(Form.props.ref)).toBe('form');
+  expect(instance.findByType(Form).props.ref).toBe('form');
 })
 
 it('has a register form', () => {
   const rendered = renderer.create(<Register />).toJSON(),
         instance = rendered.root;
   
-  expect(instance.findByType(Form.props.ref)).toBe('form');
+  expect(instance.findByType(Form).props.ref).toBe('form');
 })

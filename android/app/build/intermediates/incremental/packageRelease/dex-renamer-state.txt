@@ -1,0 +1,4 @@
+#Wed Oct 04 22:00:59 EDT 2017
+base.0=/Users/harrisonmiller/Code/SimpleApp/android/app/build/intermediates/transforms/dex/release/folders/1000/1f/main
+renamed.0=classes.dex
+file.0=/Users/harrisonmiller/Code/SimpleApp/android/app/build/intermediates/transforms/dex/release/folders/1000/1f/main/classes.dex
