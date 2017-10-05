@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 
 export default class PreferenceSelect extends Component {
   static propTypes = {
-    active: PropTypes.string.isRequired,
+    active: PropTypes.string,
     prompt: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired,
     setPreference: PropTypes.func.isRequired

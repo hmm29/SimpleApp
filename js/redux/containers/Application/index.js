@@ -2,7 +2,7 @@
  * Created by harrisonmiller on 10/3/17.
  */
 import React, {Component} from 'react';
-import {ActivityIndicator, AlertIOS, AsyncStorage, StatusBar, Text, View} from 'react-native';
+import {AlertIOS, StatusBar, View} from 'react-native';
 import {DrawerNavigator, StackNavigator} from 'react-navigation';
 import defaultPreferences from '../../../data/defaultPreferences.json';
 import {connect} from 'react-redux';
@@ -64,9 +64,8 @@ class Application extends Component {
   
   _handleUserDataResponse(userInfo, alertMessageTitle, alertMessageBody) {
     AlertIOS.alert(alertMessageTitle, alertMessageBody);
-  
+    
     let currentUserId = userInfo.sub || 'auth0|' + userInfo.Id;
-
     this.props.onLogin(currentUserId, userInfo.email);
     this._updateStateWithDatabasePreferences(currentUserId);
   }
@@ -92,66 +91,48 @@ class Application extends Component {
   }
   
   _updateStateWithDatabasePreferences(currentUserId) {
-    auth0.
-    users(token)
+    auth0.users(token)
       .getUser({id: currentUserId})
       .then((data) => {
-        let preferences = data.userMetadata;
+        let preferences = data.userMetadata || defaultPreferences;
         Object.keys(preferences).map((pref) => {
-          this.props.onSetPreference({pref: preferences[pref]});
+          this.props.onSetPreference({[pref]: preferences[pref]});
         })
       })
       .catch((error) => console.log(error.message));
-  
-    
   }
   
   _updateUserPreferencesInDatabase(currentUserId, preferences) {
     auth0
       .users(token)
       .patchUser({
-          id: currentUserId,
-          metadata: preferences
-        })
+        id: currentUserId,
+        metadata: preferences
+      })
       .then((result) => console.log(JSON.stringify(result)))
       .catch((error) => AlertIOS.alert('Something happened!', error.message));
   }
   
   render() {
-    const loadingView = (
-      <View style={styles.loadingView}>
-        <ActivityIndicator size="large" style={styles.activityIndicator}/>
-        <Text>Loading...</Text>
-      </View>
-    );
-    
     return (
       <View style={styles.appContainer}>
         <StatusBar barStyle="dark-content" backgroundColor="#aaa"/>
         {this.props.currentUserId ?
-            <DrawerNavigation
-              screenProps={{
-                currentUserEmail: this.props.currentUserEmail,
-                logout: () => this._logout.call(this, CLIENT_ID_PARAM)
-              }}/>
-            : <StackNavigation
-              screenProps={{createUser: this._createUser.bind(this), login: this._login.bind(this)}}/>}
+          <DrawerNavigation
+            screenProps={{
+              currentUserEmail: this.props.currentUserEmail,
+              logout: () => this._logout.call(this, CLIENT_ID_PARAM)
+            }}/>
+          : <StackNavigation
+            screenProps={{createUser: this._createUser.bind(this), login: this._login.bind(this)}}/>}
       </View>
     )
   }
 }
 
 const styles = {
-  activityIndicator: {
-    marginVertical: 10
-  },
   appContainer: {
     flex: 1
-  },
-  loadingView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
   }
 }
 
