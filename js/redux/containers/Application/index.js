@@ -2,7 +2,7 @@
  * Created by harrisonmiller on 10/3/17.
  */
 import React, {Component} from 'react';
-import {AlertIOS, StatusBar, View} from 'react-native';
+import {Alert, StatusBar, View} from 'react-native';
 import {DrawerNavigator, StackNavigator} from 'react-navigation';
 import defaultPreferences from '../../../data/defaultPreferences.json';
 import {connect} from 'react-redux';
@@ -32,86 +32,80 @@ const StackNavigation = StackNavigator({
 })
 
 class Application extends Component {
-  _createUser(email, password) {
-    auth0
-      .auth
-      .createUser({
+  async _createUser(email, password) {
+    
+    try {
+      let userInfo = auth0.auth.createUser({
         email,
         password,
         connection: 'Username-Password-Authentication',
         metadata: defaultPreferences
-      })
-      .then((userInfo) => {
-        this._handleUserDataResponse(
-          userInfo,
-          'Registration Success',
-          `Welcome, ${userInfo.email}!`);
-      })
-      .catch((error) => console.log(error.message));
+      });
+      this._handleUserDataResponse(userInfo, 'Registration Success', `Welcome, ${userInfo.email}!`);
+    } catch(e) {
+      Alert.alert('Oops!', 'There was a problem with creating your new user account!\n\n' + e.message);
+    }
   }
   
-  _getUserInfo(accessToken) {
-    auth0
-      .auth
-      .userInfo({token: accessToken})
-      .then((userInfo) => {
-        this._handleUserDataResponse(
-          userInfo,
-          "Login Success",
-          `You're successfully logged in, ${userInfo.email}`)
-      })
+  async _getUserInfo(accessToken) {
+    try {
+      let userInfo = await auto0.auth.userInfo({token: accessToken});
+      this._handleUserDataResponse(userInfo, 'Login Success', `You're successfully logged in, ${userInfo.email}`);
+    } catch(e) {
+      Alert.alert('Oops!', 'There was a problem with fetching user info!\n\n' + e.message);
+    }
   }
   
   _handleUserDataResponse(userInfo, alertMessageTitle, alertMessageBody) {
-    AlertIOS.alert(alertMessageTitle, alertMessageBody);
+    Alert.alert(alertMessageTitle, alertMessageBody);
     
-    let currentUserId = userInfo.sub || 'auth0|' + userInfo.Id;
+    const currentUserId = userInfo.sub || 'auth0|' + userInfo.Id;
     this._updateStateWithDatabasePreferences(currentUserId);
     this.props.onLogin(currentUserId, userInfo.email);
   }
   
-  _login(email, password) {
-    auth0
-      .auth
-      .passwordRealm({username: email, password, realm: "Username-Password-Authentication"})
-      .then((data) => this._getUserInfo(data.accessToken))
-      .catch((error) => AlertIOS.alert('Oops!', error.message));
+  async _login(email, password) {
+    try {
+      let data = await auth0.auth.passwordRealm({username: email, password, realm: 'Username-Password-Authentication'});
+      this._getUserInfo(data.accessToken);
+    } catch(e) {
+      Alert.alert('Oops!', 'There was a problem with login!\n\n' + e.message);
+    }
   }
   
-  _logout(params) {
-    const logoutUrl = auth0.auth.logoutUrl(params),
-      {currentUserId, preferences} = this.props;
-    
-    fetch(logoutUrl)
-      .then((response) => console.log(JSON.stringify(response)))
-      .then(() => this._updateUserPreferencesInDatabase(currentUserId, preferences))
-      .then(() => this.props.onLogout())
-      .then(() => AlertIOS.alert('Logout Success', `You've logged out.`))
-      .catch((error) => console.log(error.message))
+  async _logout(params) {
+    try {
+      const logoutUrl = auth0.auth.logoutUrl(params),
+        {currentUserId, preferences} = this.props;
+      
+      await fetch(logoutUrl);
+      this._updateUserPreferencesInDatabase(currentUserId, preferences);
+      this.props.onLogout();
+      Alert.alert('Logout Success', `You've logged out.`);
+    } catch(e) {
+      Alert.alert('Oops!', 'There was a problem with logout!\n\n' + e.message);
+    }
   }
   
-  _updateStateWithDatabasePreferences(currentUserId) {
-    auth0.users(token)
-      .getUser({id: currentUserId})
-      .then((data) => {
-        let preferences = data.userMetadata || defaultPreferences;
-        Object.keys(preferences).map((pref) => {
-          this.props.onSetPreference({[pref]: preferences[pref]});
-        })
-      })
-      .catch((error) => console.log(error.message));
+  async _updateStateWithDatabasePreferences(currentUserId) {
+    try {
+      let data = await auth0.users(token).getUser({id: currentUserId});
+      let preferences = data.userMetadata || defaultPreferences;
+      Object.keys(preferences).map((pref) => {
+        this.props.onSetPreference({[pref]: preferences[pref]});
+      });
+    } catch(e) {
+      Alert.alert('Oops!', 'There was a problem getting your preferences from the Auth0 database!\n\n' + e.message);
+    }
   }
   
-  _updateUserPreferencesInDatabase(currentUserId, preferences) {
-    auth0
-      .users(token)
-      .patchUser({
-        id: currentUserId,
-        metadata: preferences
-      })
-      .then((result) => console.log(JSON.stringify(result)))
-      .then(() => this.props.onClearPreferences())
-      .catch((error) => AlertIOS.alert('Something happened!', error.message));
+  async _updateUserPreferencesInDatabase(currentUserId, preferences) {
+    try {
+      await auth0.users(token).patchUser({id: currentUserId, metadata: preferences});
+      this.props.onClearPreferences();
+    } catch(e) {
+      Alert.alert('Oops!', 'There was a problem updating your preferences in the Auth0 database!\n\n' + e.message);
+    }
   }
   
   render() {
