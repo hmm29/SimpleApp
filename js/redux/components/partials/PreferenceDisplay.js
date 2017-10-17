@@ -44,10 +44,10 @@ const styles = {
     height: 200
   },
   fieldName: {
-    fontSize: height/35
+    fontSize: height/35,
   },
   fieldValue: {
-    fontSize: height/40
+    fontSize: height/40,
   },
   preferenceDisplay: {
     flexDirection: 'column',
@@ -56,7 +56,6 @@ const styles = {
     marginVertical: height/40
   },
   title: {
-    marginTop: height/20,
-    marginBottom: height/15
+    marginTop: height/8
   }
 }

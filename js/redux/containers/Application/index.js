@@ -35,7 +35,7 @@ class Application extends Component {
   async _createUser(email, password) {
     
     try {
-      let userInfo = auth0.auth.createUser({
+      let userInfo = await auth0.auth.createUser({
         email,
         password,
         connection: 'Username-Password-Authentication',
@@ -49,7 +49,7 @@ class Application extends Component {
   
   async _getUserInfo(accessToken) {
     try {
-      let userInfo = await auto0.auth.userInfo({token: accessToken});
+      let userInfo = await auth0.auth.userInfo({token: accessToken});
       this._handleUserDataResponse(userInfo, 'Login Success', `You're successfully logged in, ${userInfo.email}`);
     } catch(e) {
       Alert.alert('Oops!', 'There was a problem with fetching user info!\n\n' + e.message);
@@ -78,10 +78,11 @@ class Application extends Component {
       const logoutUrl = auth0.auth.logoutUrl(params),
         {currentUserId, preferences} = this.props;
       
-      await fetch(logoutUrl);
+      let response = await fetch(logoutUrl);
       this._updateUserPreferencesInDatabase(currentUserId, preferences);
       this.props.onLogout();
-      Alert.alert('Logout Success', `You've logged out.`);
+      
+      if(response) Alert.alert('Logout Success', `You've logged out.`);
     } catch(e) {
       Alert.alert('Oops!', 'There was a problem with logout!\n\n' + e.message);
     }
